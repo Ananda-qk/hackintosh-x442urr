@@ -2,6 +2,12 @@
 This is EFI Patch based on OpenCore bootloader that I've made. It's just for series X442UR, X442URR, A442UR, or A442URR, if you're facing a problem using this EFI, you can open issue in this repo or contact me on [Telegram](https://t.me/hamcuks)
 
 ![About This Mac](https://github.com/hamcuks/hackintosh-x442urr/blob/master/Screnshots/ss-about.png?raw=true)
+![Opencore Bootloader](https://github.com/hamcuks/hackintosh-x442urr/blob/master/Screnshots/ss-bl.png?raw=true)
+![Intel UHD 620 Graphics](https://github.com/hamcuks/hackintosh-x442urr/blob/master/Screnshots/ss-gpu.png?raw=true)
+![Credit patch](https://github.com/hamcuks/hackintosh-x442urr/blob/master/Screnshots/ss-pci.png?raw=true)
+![Peripheral](https://github.com/hamcuks/hackintosh-x442urr/blob/master/Screnshots/ss-peripheral.png?raw=true)
+![SATA](https://github.com/hamcuks/hackintosh-x442urr/blob/master/Screnshots/ss-sata.png?raw=true)
+![WiFi Intel 6 AX200](https://github.com/hamcuks/hackintosh-x442urr/blob/master/Screnshots/ss-wifi.png?raw=true)
 
 
 ## Technical Specs
