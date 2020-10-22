@@ -18,7 +18,7 @@ Computer Model | ASUS X442URR
 Processor   | Intel Core i5-8250U
 iGPU        | Intel UHD 620 Graphics
 dGPU        | Nvidia 930MX
-Storage     | ADATA 120GB SSD SATAIII
+Storage     | ADATA 120GB SSD SATA III
 RAM         | 2 x 4GB
 WLAN        | Intel Wi-Fi 6 AX200
 Ethernet    | RTL8111/8168H
@@ -50,9 +50,9 @@ Please disable this configurations in BIOS. You can enable again after installat
 - QE/CI Intel UHD Graphis 620
 - Power Management
 - Shutdown, Restart, Sleep (ongoing test), Wake
-- Audio speaker, Int mic., Headphone
+- Audio speaker, Int mic., Headphone (Layoit-id 66)
 - Wi-Fi with AirportItlwm.kext and Blueetooth
-- Trackpad Full Gesture, running on Interrup mode
+- Trackpad Multi Gesture, running on Interrupt mode (0x55 Pin List)
 - Camera
 - etc
 
