@@ -3,6 +3,7 @@ DefinitionBlock ("", "SSDT", 2, "HAMCUK", "Hack", 0)
     
     Scope (\)
     {
+        // method osdw to check the booted kernel
         Method (OSDW)
         {
             If (_OSI ("Darwin"))
@@ -11,6 +12,64 @@ DefinitionBlock ("", "SSDT", 2, "HAMCUK", "Hack", 0)
             } Else
             {
                 Return (Zero)
+            }
+        }
+    }
+    
+    Scope (\_SB)
+    {
+        
+        // USBX Patch
+        Device (USBX)
+        {
+            Name (_ADR, Zero)
+            Method (_STA)
+            {
+                If (OSDW)
+                {
+                    Return (One)
+                } Else
+                {
+                    Return (Zero)
+                }
+            }
+            Method (_DSM, 4)
+            {
+                If ((Arg2 == Zero))
+                {
+                    Return (Buffer () { 0x03 })
+                }
+                
+                Return (Package ()
+                {
+                    "kUSBSleepPowerSupply",
+                    0x13EC,
+                    "kUSBSleepPortCurrentLimit",
+                    0x0834,
+                    "kUSBWakePowerSupply",
+                    0x13EC,
+                    "kUSBWakePortCurrentLimit",
+                    0x0834
+                })
+            }
+        }
+        
+        // PNLF for Kabylake
+        Device (PNLF)
+        {
+            Name (_ADR, Zero)
+            Name (_HID, EisaId ("APP0002"))
+            Name (_CID, "backlight")
+            Name (_UID, 0x10)
+            Method (_STA)
+            {
+                If (OSDW)
+                {
+                    Return (0x0B)
+                } Else
+                {
+                    Return (Zero)
+                }
             }
         }
     }
@@ -128,25 +187,8 @@ DefinitionBlock ("", "SSDT", 2, "HAMCUK", "Hack", 0)
                          0x01, 0x00, 0x00, 0x00                           // ....
                     }
                 })
-            }
+            }            
             
-            Device (^^PNLF)
-            {
-                Name (_ADR, Zero)
-                Name (_HID, EisaId ("APP0002"))
-                Name (_CID, "backlight")
-                Name (_UID, 0x10)
-                Method (_STA)
-                {
-                    If (OSDW)
-                    {
-                        Return (0x0B)
-                    } Else
-                    {
-                        Return (Zero)
-                    }
-                }
-            }
         }
         
         // import Optimus _OFF method to disable Nvidia GPU
