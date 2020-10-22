@@ -70,7 +70,7 @@ Please disable this configurations in BIOS. You can enable again after installat
 
 ## Credits
 - [H4CK1NTOSH L0V3R](https://t.me/HackintoshLover) Group
-- [Dortania](https://dortania.github.com) as their pretty nice guide
+- [Dortania](https://dortania.github.io) as their pretty nice guide
 - [Zenbook Hackintosh by Hieplpvip](https://github.com/hieplpvip/Asus-Zenbook-Hackintosh)
 
 ## Terima Kasih, Matur Nuwun, Kamboto Terimakasih, Hatur Nuhun
