@@ -152,61 +152,73 @@ DefinitionBlock ("", "SSDT", 2, "HAMCUK", "Hack", 0)
                     Return (Buffer () { 0x03 })
                 }
 
-                Return (Package (0x14)
+                Return (Package ()
                 {
+                    "name",
+                    "display",
+                    
+                    "AAPL,slot-name",
+                    "Built-in",
+                    
+                    "device_type",
+                    "Display Controller",
+                    
+                    "model",
+                    "Intel UHD 620 Graphics",
+                    
                     "hda-gfx",
                     "onboard-1",
                     
                     "disable-agdc", 
-                    Buffer (0x04)
+                    Buffer ()
                     {
                          0x01, 0x00, 0x00, 0x00                           // ....
                     }, 
 
                     "force-online", 
-                    Buffer (0x04)
+                    Buffer ()
                     {
                          0x01, 0x00, 0x00, 0x00                           // ....
                     }, 
 
                     "device-id", 
-                    Buffer (0x04)
+                    Buffer ()
                     {
                          0x16, 0x59, 0x00, 0x00                           // .Y..
                     }, 
 
                     "AAPL,ig-platform-id", 
-                    Buffer (0x04)
+                    Buffer ()
                     {
                          0x00, 0x00, 0x16, 0x59                           // ...Y
                     }, 
 
                     "framebuffer-con1-enable", 
-                    Buffer (0x04)
+                    Buffer ()
                     {
                          0x01, 0x00, 0x00, 0x00                           // ....
                     }, 
 
                     "framebuffer-con1-type", 
-                    Buffer (0x04)
+                    Buffer ()
                     {
                          0x00, 0x08, 0x00, 0x00                           // ....
                     }, 
 
                     "framebuffer-con2-enable", 
-                    Buffer (0x04)
+                    Buffer ()
                     {
                          0x01, 0x00, 0x00, 0x00                           // ....
                     }, 
 
                     "framebuffer-con2-type", 
-                    Buffer (0x04)
+                    Buffer ()
                     {
                          0x00, 0x08, 0x00, 0x00                           // ....
                     }, 
 
                     "framebuffer-patch-enable", 
-                    Buffer (0x04)
+                    Buffer ()
                     {
                          0x01, 0x00, 0x00, 0x00                           // ....
                     }
@@ -273,11 +285,24 @@ DefinitionBlock ("", "SSDT", 2, "HAMCUK", "Hack", 0)
                 
                 Return (Package ()
                 {
+                    "name",
+                    "HDEF",
+                    
+                    "AAPL,slot-name",
+                    "Built-in",
+                    
+                    "device_type",
+                    "Audio Controller",
+                    
+                    "model",
+                    "Hamcuks Realtek HD Audio ALC256",
+                    
                     "layout-id",
                     Buffer ()
                     {
                         0x42, 0x00, 0x00, 0x00
                     },
+                    
                     "hda-gfx",
                     "onboard-1"
                 })
