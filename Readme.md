@@ -46,6 +46,7 @@ Please disable this configurations in BIOS. You can enable again after installat
 - Mojave => Not tested yet, ongoing
 
 ## Whats working?
+- Multiboot, this patch suitable for multibooting. Tested on multiboot with Windows 10
 - QE/CI Intel UHD Graphis 620
 - Power Management
 - Shutdown, Restart, Sleep (ongoing test), Wake
