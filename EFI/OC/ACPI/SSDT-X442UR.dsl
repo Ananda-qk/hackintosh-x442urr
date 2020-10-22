@@ -119,6 +119,88 @@ DefinitionBlock ("", "SSDT", 2, "HAMCUK", "Hack", 0)
             }
         }
         
+        // import EC0 obj
+        External (LPCB.EC0, DeviceObj)
+        Scope (LPCB.EC0)
+        {
+            
+            // import ATKP and ATKD.IANE
+            External (\_SB.ATKP, UnknownObj)
+            External (\_SB.ATKD.IANE, MethodObj)
+            
+            // EC Query Patch begin
+            
+            // Fn + F1
+            Method (_Q0A)
+            {
+                If (OSDW)
+                {
+                    If (\_SB.ATKP)
+                    {
+                        \_SB.ATKD.IANE (0x5E)
+                    }                
+                } Else
+                {
+                    // import original Ec Query
+                    External (^XQ0A, MethodObj)
+                    ^XQ0A ()
+                }
+            }
+            
+            // Fn + F2
+            Method (_Q0B)
+            {
+                If (OSDW)
+                {
+                    If (\_SB.ATKP)
+                    {
+                        \_SB.ATKD.IANE (0x7D)
+                    }
+                } Else
+                {
+                    // import original Ec Query
+                    External (^XQ0B, MethodObj)
+                    ^XQ0B ()
+                }
+            }
+            
+            // Fn + F5
+            Method (_Q0E)
+            {
+                If (OSDW)
+                {
+                    If (\_SB.ATKP)
+                    {
+                        \_SB.ATKD.IANE (0x20)
+                    }
+                } Else
+                {
+                    // import original Ec Query
+                    External (^XQ0E, MethodObj)
+                    ^XQ0E ()
+                }
+            }
+            
+            // Fn + F6
+            Method (_Q0F)
+            {
+                If (OSDW)
+                {
+                    If (\_SB.ATKP)
+                    {
+                        \_SB.ATKD.IANE (0x10)
+                    }
+                } Else
+                {
+                    // import original Ec Query
+                    External (^XQ0F, MethodObj)
+                    ^XQ0F ()
+                }
+            }
+            
+            // End of EC Query Patch
+        }
+        
         // import external obj, and turn off GFX0 device state
         External (GFX0, DeviceObj)
         Scope (GFX0)
@@ -487,6 +569,7 @@ DefinitionBlock ("", "SSDT", 2, "HAMCUK", "Hack", 0)
     // MISC PATCH GOES HERE
     Scope (\_SB.PCI0)
     {
+        // Add MCHC
         Device (MCHC)
         {
             Name (_ADR, Zero)
@@ -506,6 +589,7 @@ DefinitionBlock ("", "SSDT", 2, "HAMCUK", "Hack", 0)
         External (SBUS, DeviceObj)
         Scope (SBUS)
         {
+            // BUS0 Patch in order to load AppleSMBusPCI
             Device (BUS0)
             {
                 Name (_CID, "smbus")
