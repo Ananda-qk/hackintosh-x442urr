@@ -217,5 +217,41 @@ DefinitionBlock ("", "SSDT", 2, "HAMCUK", "Hack", 0)
                 })
             }
         }
+        
+        // import ETPD Obj, and patch custom CRS
+        External (I2C1.ETPD, DeviceObj)
+        Scope (I2C1.ETPD)
+        {
+            Method (_CRS)
+            {
+                Name (SBFX, ResourceTemplate ()
+                {
+                    I2cSerialBusV2 (0x0015, ControllerInitiated, 0x00061A80,
+                        AddressingMode7Bit, "\\_SB.PCI0.I2C1",
+                        0x00, ResourceConsumer, , Exclusive,
+                        )
+                })
+                
+                Name (SBFG, ResourceTemplate ()
+                {
+                    GpioInt (Level, ActiveLow, ExclusiveAndWake, PullDefault, 0x0000,
+                        "\\_SB.PCI0.GPI0", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x55
+                        }
+                })
+                
+                If (OSDW)
+                {
+                    Return (ConcatenateResTemplate (SBFX, SBFG))
+                } Else
+                {
+                    // import original SBFI resource template
+                    External (^XCRS.SBFI, UnknownObj)
+                    Return (^XCRS.SBFI)
+                }
+            }
+        }
     }
 }
