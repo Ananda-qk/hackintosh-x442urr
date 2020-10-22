@@ -839,27 +839,6 @@
 	<dict>
 		<key>Automatic</key>
 		<true/>
-		<key>Generic</key>
-		<dict>
-			<key>AdviseWindows</key>
-			<false/>
-			<key>MLB</key>
-			<string>C027514044NHWVPJA</string>
-			<key>ProcessorType</key>
-			<integer>1537</integer>
-			<key>SystemMemoryStatus</key>
-			<string>Auto</string>
-			<key>ROM</key>
-			<data></data>
-			<key>SpoofVendor</key>
-			<true/>
-			<key>SystemProductName</key>
-			<string>MacBookPro14,1</string>
-			<key>SystemSerialNumber</key>
-			<string>C02VVSZKHV29</string>
-			<key>SystemUUID</key>
-			<string>0FF4BCCF-5525-4B01-BC70-310DC1A920D1</string>
-		</dict>
 		<key>UpdateDataHub</key>
 		<true/>
 		<key>UpdateNVRAM</key>
