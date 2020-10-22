@@ -153,31 +153,7 @@ DefinitionBlock ("", "SSDT", 2, "HAMCUK", "Hack", 0)
                 }
 
                 Return (Package ()
-                {
-                    "name",
-                    Buffer ()
-                    {
-                        "display"
-                    },
-                    
-                    "AAPL,slot-name",
-                    Buffer ()
-                    {
-                        "Built-in"
-                    },
-                    
-                    "device_type",
-                    Buffer ()
-                    {
-                        "Display Controller"
-                    },
-                    
-                    "model",
-                    Buffer ()
-                    {
-                        "Intel UHD 620 Graphics"
-                    },
-                    
+                {                    
                     "hda-gfx",
                     Buffer ()
                     {
@@ -299,31 +275,7 @@ DefinitionBlock ("", "SSDT", 2, "HAMCUK", "Hack", 0)
                 }
                 
                 Return (Package ()
-                {
-                    "name",
-                    Buffer ()
-                    {
-                        "HDEF"
-                    },
-                    
-                    "AAPL,slot-name",
-                    Buffer ()
-                    {
-                        "Built-in"
-                    },
-                    
-                    "device_type",
-                    Buffer ()
-                    {
-                        "Audio Controller"
-                    },
-                    
-                    "model",
-                    Buffer ()
-                    {
-                        "Hamcuks Realtek HD Audio ALC256"
-                    },
-                    
+                {                    
                     "layout-id",
                     Buffer ()
                     {
@@ -368,7 +320,7 @@ DefinitionBlock ("", "SSDT", 2, "HAMCUK", "Hack", 0)
                     Return (ConcatenateResTemplate (SBFX, SBFG))
                 } Else
                 {
-                    // import original SBFI resource template
+                    // import XCRS
                     External (^XCRS, MethodObj)
                     ^XCRS ()
                 }
@@ -550,6 +502,97 @@ DefinitionBlock ("", "SSDT", 2, "HAMCUK", "Hack", 0)
             }
         }
         
+        // import SBUS
+        External (SBUS, DeviceObj)
+        Scope (SBUS)
+        {
+            Device (BUS0)
+            {
+                Name (_CID, "smbus")
+                Name (_ADR, Zero)
+                Method (_STA)
+                {
+                    If (OSDW)
+                    {
+                        Return (One)
+                    } Else
+                    {
+                        Return (Zero)
+                    }
+                }
+                
+                Device (DVL0)
+                {
+                
+                    Name (_ADR, 0x57)
+                    Name (_CID, "diagsvault")
+                    Method (_DSM, 4)
+                    {
+                        If (!Arg2)
+                        {
+                            Return (Buffer () { 0x57 })
+                        }
+                        
+                        Return (Package (0x02)
+                        {
+                            "address",
+                            0x57
+                        })
+                    }
+                }
+            }
+        }
+        
+        Device (THML)
+        {
+            Name (_ADR, 0x00140002)
+            Method (_STA)
+            {
+                If (OSDW)
+                {
+                    Return (One)
+                } Else
+                {
+                    Return (Zero)
+                }
+            }
+            Method (_DSM, 4)
+            {
+                If ((Arg2 == Zero))
+                {
+                    Return (Buffer () { 0x03 })
+                }
+                
+                Return (Package ()
+                {
+                    "name",
+                    Buffer ()
+                    {
+                        "PTCH"
+                    },
+                    
+                    "AAPL,slot-name",
+                    Buffer ()
+                    {
+                        "Built-in"
+                    },
+                    
+                    "device_type",
+                    Buffer ()
+                    {
+                        "Credit Patch"
+                    },
+                    
+                    "model",
+                    Buffer ()
+                    {
+                        "This patch created by Hamcuks. If you're facing problems, please contact me at t.me/hamcuks"
+                    },
+                    
+                })
+            }
+        }
+        
         // import RP05 object
         External (RP05, DeviceObj)
         Scope (RP05)
@@ -581,31 +624,7 @@ DefinitionBlock ("", "SSDT", 2, "HAMCUK", "Hack", 0)
                 {
                     Name (_STA, Zero)
                 }
-                Method (_DSM, 4)
-                {
-                    If ((Arg2 == Zero))
-                    {
-                        Return (Buffer () { 0x03 })
-                    }
-                    
-                    Return (Package () {
-                        "name",
-                        Buffer ()
-                        {
-                            "GIGE"
-                        },
-                        "AAPL,slot-name",
-                        Buffer ()
-                        {
-                            "Built-in"
-                        },
-                        "device_type",
-                        Buffer ()
-                        {
-                            "Ethernet Controller"
-                        }
-                    })
-                }
+                
             }
         }
         
@@ -629,36 +648,6 @@ DefinitionBlock ("", "SSDT", 2, "HAMCUK", "Hack", 0)
                 If (!OSDW)
                 {
                     Name (_STA, Zero)
-                }
-                Method (_DSM, 4)
-                {
-                    If ((Arg2 == Zero))
-                    {
-                        Return (Buffer () { 0x03 })
-                    }
-                    
-                    Return (Package () {
-                        "name",
-                        Buffer ()
-                        {
-                            "ARPT"
-                        },
-                        "AAPL,slot-name",
-                        Buffer ()
-                        {
-                            "Built-in"
-                        },
-                        "device_type",
-                        Buffer ()
-                        {
-                            "Aiport Extreme"
-                        },
-                        "model",
-                        Buffer ()
-                        {
-                            "Hamcuks Intel Wi-Fi 6 AX200"
-                        }
-                    })
                 }
             }
         }
