@@ -16,6 +16,28 @@ DefinitionBlock ("", "SSDT", 2, "HAMCUK", "Hack", 0)
         }
     }
     
+    // import Processor obj to inject plugin type
+    External (\_PR.PR00, ProcessorObj)
+    Scope (\_PR.PR00)
+    {
+        Method (_DSM, 4)
+        {
+            If ((Arg2 == Zero))
+            {
+                Return (Buffer () { 0x03 })
+            }
+            
+            If (OSDW)
+            {
+                Return (Package ()
+                {
+                    "plugin-type",
+                    One
+                })
+            }
+        }
+    }
+    
     Scope (\_SB)
     {
         
@@ -73,6 +95,8 @@ DefinitionBlock ("", "SSDT", 2, "HAMCUK", "Hack", 0)
             }
         }
     }
+    
+    // MAIN PATCH GOES HERE
     
     // Import PCI0 Object
     External (\_SB.PCI0, DeviceObj)
@@ -296,4 +320,118 @@ DefinitionBlock ("", "SSDT", 2, "HAMCUK", "Hack", 0)
             }
         }
     }
+
+    // END MAIN PATCH
+
+    // MISC PATCH GOES HERE
+    Scope (\_SB.PCI0)
+    {
+        Device (MCHC)
+        {
+            Name (_ADR, Zero)
+            Method (_STA)
+            {
+                If (OSDW)
+                {
+                    Return (One)
+                } Else
+                {
+                    Return (Zero)
+                }
+            }
+        }
+        
+        // import RP05 object
+        External (RP05, DeviceObj)
+        Scope (RP05)
+        {
+            // import PXSX and turn it off
+            External (PXSX, DeviceObj)
+            Scope (PXSX)
+            {
+                If (OSDW)
+                {
+                    Name (_STA, Zero)
+                }
+            }
+            
+            // import GLAN and turn it off
+            External (GLAN, DeviceObj)
+            Scope (GLAN)
+            {
+                If (OSDW)
+                {
+                    Name (_STA, Zero)
+                }
+            }
+            
+            Device (GIGE)
+            {
+                Name (_ADR, Zero)
+                If (!OSDW)
+                {
+                    Name (_STA, Zero)
+                }
+                Method (_DSM, 4)
+                {
+                    If ((Arg2 == Zero))
+                    {
+                        Return (Buffer () { 0x03 })
+                    }
+                    
+                    Return (Package () {
+                        "name",
+                        "GIGE",
+                        "AAPL,slot-name",
+                        "Built-in",
+                        "device_type",
+                        "Ethernet Controller"
+                    })
+                }
+            }
+        }
+        
+        // import RP06 object
+        External (RP06, DeviceObj)
+        Scope (RP06)
+        {
+            // import PXSX and turn it off
+            External (PXSX, DeviceObj)
+            Scope (PXSX)
+            {
+                If (OSDW)
+                {
+                    Name (_STA, Zero)
+                }
+            }
+            
+            Device (ARPT)
+            {
+                Name (_ADR, Zero)
+                If (!OSDW)
+                {
+                    Name (_STA, Zero)
+                }
+                Method (_DSM, 4)
+                {
+                    If ((Arg2 == Zero))
+                    {
+                        Return (Buffer () { 0x03 })
+                    }
+                    
+                    Return (Package () {
+                        "name",
+                        "ARPT",
+                        "AAPL,slot-name",
+                        "Built-in",
+                        "device_type",
+                        "Aiport Extreme",
+                        "model",
+                        "Hamcuks Intel Wi-Fi 6 AX200"
+                    })
+                }
+            }
+        }
+    }
+    // END MISC PATCH
 }
