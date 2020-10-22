@@ -24,9 +24,15 @@ DefinitionBlock ("", "SSDT", 2, "HAMCUK", "Hack", 0)
         Device (LPCB.EC)
         {
             Name (_HID, "HAMC0000")
-            If (!OSDW)
+            Method (_STA)
             {
-                Name (_STA, Zero)
+                If (OSDW)
+                {
+                    Return (One)
+                } Else
+                {
+                    Return (Zero)
+                }
             }
         }
         
@@ -60,20 +66,14 @@ DefinitionBlock ("", "SSDT", 2, "HAMCUK", "Hack", 0)
             {
                 If ((Arg2 == Zero))
                 {
-                    Return (Buffer (One)
-                    {
-                         0x03                                             // .
-                    })
+                    Return (Buffer () { 0x03 })
                 }
 
                 Return (Package (0x14)
                 {
-                    "hda-gfx", 
-                    Buffer (0x0A)
-                    {
-                        "onboard-1"
-                    }, 
-
+                    "hda-gfx",
+                    "onboard-1",
+                    
                     "disable-agdc", 
                     Buffer (0x04)
                     {
@@ -154,9 +154,15 @@ DefinitionBlock ("", "SSDT", 2, "HAMCUK", "Hack", 0)
         Device (DGPU)
         {
             Name (_HID, "DGPU0000")
-            If (!OSDW)
+            Method (_STA)
             {
-                Name (_STA, Zero)
+                If (OSDW)
+                {
+                    Return (One)
+                } Else
+                {
+                    Return (Zero)
+                }
             }
             
             Method (_INI)
@@ -168,6 +174,47 @@ DefinitionBlock ("", "SSDT", 2, "HAMCUK", "Hack", 0)
                         \_SB.PCI0.RP01.PEGP._OFF ()
                     }
                 }
+            }
+        }
+        
+        // import HDAS Obj, and turn it of
+        External (HDAS, DeviceObj)
+        Scope (HDAS)
+        {
+            Name (_STA, Zero)
+        }
+        
+        // HDEF Audio Patch for ALC256 - layout 66
+        Device (HDEF)
+        {
+            Name (_ADR, 0x001F0003)
+            Method (_STA)
+            {
+                If (OSDW)
+                {
+                    Return (One)
+                } Else
+                {
+                    Return (Zero)
+                }
+            }
+            Method (_DSM, 4)
+            {
+                If ((Arg2 == Zero))
+                {
+                    Return (Buffer () { 0x03 })
+                }
+                
+                Return (Package ()
+                {
+                    "layout-id",
+                    Buffer ()
+                    {
+                        0x42, 0x00, 0x00, 0x00
+                    },
+                    "hda-gfx",
+                    "onboard-1"
+                })
             }
         }
     }
