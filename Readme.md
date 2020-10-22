@@ -1,6 +1,8 @@
 # ASUS X442UR/R Hackintosh
 This is EFI Patch based on OpenCore bootloader that I've made. It's just for series X442UR, X442URR, A442UR, or A442URR, if you're facing a problem using this EFI, you can open issue in this repo or contact me on [Telegram](https://t.me/hamcuks)
 
+![About This Mac](https://github.com/hamcuks/hackintosh-x442urr/blob/master/Screnshots/ss-about.png?raw=true)
+
 
 ## Technical Specs
 
