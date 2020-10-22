@@ -290,8 +290,8 @@ DefinitionBlock ("", "SSDT", 2, "HAMCUK", "Hack", 0)
                 } Else
                 {
                     // import original SBFI resource template
-                    External (^XCRS.SBFI, UnknownObj)
-                    Return (^XCRS.SBFI)
+                    External (^XCRS, MethodObj)
+                    ^XCRS ()
                 }
             }
         }
