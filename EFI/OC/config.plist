@@ -735,37 +735,6 @@
 	<dict>
 		<key>Automatic</key>
 		<true/>
-		<key>DataHub</key>
-		<dict>
-			<key>ARTFrequency</key>
-			<integer>0</integer>
-			<key>BoardProduct</key>
-			<string>Mac-B4831CEBD52A0C4C</string>
-			<key>BoardRevision</key>
-			<data>Gw==</data>
-			<key>DevicePathsSupported</key>
-			<integer>0</integer>
-			<key>FSBFrequency</key>
-			<integer>0</integer>
-			<key>InitialTSC</key>
-			<integer>0</integer>
-			<key>PlatformName</key>
-			<string></string>
-			<key>SmcBranch</key>
-			<data>MjAxN21icAA=</data>
-			<key>SmcPlatform</key>
-			<data>ajEzMGEAAAA=</data>
-			<key>SmcRevision</key>
-			<data>AkMPAAAQ</data>
-			<key>StartupPowerEvents</key>
-			<integer>0</integer>
-			<key>SystemProductName</key>
-			<string>MacBookPro14,1</string>
-			<key>SystemSerialNumber</key>
-			<string>C02VVSZKHV29</string>
-			<key>SystemUUID</key>
-			<string>0FF4BCCF-5525-4B01-BC70-310DC1A920D1</string>
-		</dict>
 		<key>Generic</key>
 		<dict>
 			<key>AdviseWindows</key>
@@ -787,65 +756,6 @@
 			<key>SystemUUID</key>
 			<string>0FF4BCCF-5525-4B01-BC70-310DC1A920D1</string>
 		</dict>
-		<key>SMBIOS</key>
-		<dict>
-			<key>BIOSReleaseDate</key>
-			<string>06/16/2020</string>
-			<key>BIOSVendor</key>
-			<string></string>
-			<key>BIOSVersion</key>
-			<string>428.0.0.0.0</string>
-			<key>BoardAssetTag</key>
-			<string>Base Board Asset Tag</string>
-			<key>BoardLocationInChassis</key>
-			<string>Part Component</string>
-			<key>BoardManufacturer</key>
-			<string></string>
-			<key>BoardProduct</key>
-			<string>Mac-B4831CEBD52A0C4C</string>
-			<key>BoardSerialNumber</key>
-			<string>C027514044NHWVPJA</string>
-			<key>BoardType</key>
-			<integer>10</integer>
-			<key>BoardVersion</key>
-			<string>MacBookPro14,1</string>
-			<key>ChassisAssetTag</key>
-			<string>Asset Tag#</string>
-			<key>ChassisManufacturer</key>
-			<string></string>
-			<key>ChassisSerialNumber</key>
-			<string>C02VVSZKHV29</string>
-			<key>ChassisType</key>
-			<integer>9</integer>
-			<key>ChassisVersion</key>
-			<string>Mac-B4831CEBD52A0C4C</string>
-			<key>FirmwareFeatures</key>
-			<data>fvUP/wAAAAA=</data>
-			<key>FirmwareFeaturesMask</key>
-			<data>f/8f/wAAAAA=</data>
-			<key>MemoryFormFactor</key>
-			<integer>13</integer>
-			<key>PlatformFeature</key>
-			<integer>26</integer>
-			<key>ProcessorType</key>
-			<integer>1537</integer>
-			<key>SmcVersion</key>
-			<data></data>
-			<key>SystemFamily</key>
-			<string>MacBook Pro</string>
-			<key>SystemManufacturer</key>
-			<string></string>
-			<key>SystemProductName</key>
-			<string>MacBookPro14,1</string>
-			<key>SystemSKUNumber</key>
-			<string>System SKU#</string>
-			<key>SystemSerialNumber</key>
-			<string>C02VVSZKHV29</string>
-			<key>SystemUUID</key>
-			<string>0FF4BCCF-5525-4B01-BC70-310DC1A920D1</string>
-			<key>SystemVersion</key>
-			<string>1.0</string>
-		</dict>
 		<key>UpdateDataHub</key>
 		<true/>
 		<key>UpdateNVRAM</key>
@@ -853,7 +763,7 @@
 		<key>UpdateSMBIOS</key>
 		<true/>
 		<key>UpdateSMBIOSMode</key>
-		<string>Create</string>
+		<string>Custom</string>
 	</dict>
 	<key>UEFI</key>
 	<dict>

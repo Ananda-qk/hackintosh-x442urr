@@ -155,19 +155,34 @@ DefinitionBlock ("", "SSDT", 2, "HAMCUK", "Hack", 0)
                 Return (Package ()
                 {
                     "name",
-                    "display",
+                    Buffer ()
+                    {
+                        "display"
+                    },
                     
                     "AAPL,slot-name",
-                    "Built-in",
+                    Buffer ()
+                    {
+                        "Built-in"
+                    },
                     
                     "device_type",
-                    "Display Controller",
+                    Buffer ()
+                    {
+                        "Display Controller"
+                    },
                     
                     "model",
-                    "Intel UHD 620 Graphics",
+                    Buffer ()
+                    {
+                        "Intel UHD 620 Graphics"
+                    },
                     
                     "hda-gfx",
-                    "onboard-1",
+                    Buffer ()
+                    {
+                        "onboard-1"
+                    },
                     
                     "disable-agdc", 
                     Buffer ()
@@ -286,16 +301,28 @@ DefinitionBlock ("", "SSDT", 2, "HAMCUK", "Hack", 0)
                 Return (Package ()
                 {
                     "name",
-                    "HDEF",
+                    Buffer ()
+                    {
+                        "HDEF"
+                    },
                     
                     "AAPL,slot-name",
-                    "Built-in",
+                    Buffer ()
+                    {
+                        "Built-in"
+                    },
                     
                     "device_type",
-                    "Audio Controller",
+                    Buffer ()
+                    {
+                        "Audio Controller"
+                    },
                     
                     "model",
-                    "Hamcuks Realtek HD Audio ALC256",
+                    Buffer ()
+                    {
+                        "Hamcuks Realtek HD Audio ALC256"
+                    },
                     
                     "layout-id",
                     Buffer ()
@@ -304,7 +331,10 @@ DefinitionBlock ("", "SSDT", 2, "HAMCUK", "Hack", 0)
                     },
                     
                     "hda-gfx",
-                    "onboard-1"
+                    Buffer ()
+                    {
+                        "onboard-1"
+                    }
                 })
             }
         }
@@ -341,6 +371,160 @@ DefinitionBlock ("", "SSDT", 2, "HAMCUK", "Hack", 0)
                     // import original SBFI resource template
                     External (^XCRS, MethodObj)
                     ^XCRS ()
+                }
+            }
+        }
+        
+        // import XHC for USB mapping
+        External (XHC, DeviceObj)
+        Scope (XHC)
+        {
+            // import RHUB and turn it off
+            External (RHUB, DeviceObj)
+            Scope (RHUB)
+            {
+                If (OSDW)
+                {
+                    Name (_STA, Zero)
+                }
+            }
+            
+            // Custom USB Mapping
+            Device (HAMS)
+            {
+                Name (_ADR, Zero)
+                Method (_STA)
+                {
+                    If (OSDW)
+                    {
+                        Return (One)
+                    } Else
+                    {
+                        Return (Zero)
+                    }
+                }
+                Device (RHUB)
+                {
+                    Name (_ADR, Zero)  // _ADR: Address
+                    Device (HS01)
+                    {
+                        Name (_ADR, One)  // _ADR: Address
+                        Name (_UPC, Package (0x04)  // _UPC: USB Port Capabilities
+                        {
+                            0xFF, 
+                            Zero, 
+                            Zero, 
+                            Zero
+                        })
+                    }
+
+                    Device (HS02)
+                    {
+                        Name (_ADR, 0x02)  // _ADR: Address
+                        Name (_UPC, Package (0x04)  // _UPC: USB Port Capabilities
+                        {
+                            0xFF, 
+                            Zero, 
+                            Zero, 
+                            Zero
+                        })
+                    }
+
+                    Device (HS03)
+                    {
+                        Name (_ADR, 0x03)  // _ADR: Address
+                        Name (_UPC, Package (0x04)  // _UPC: USB Port Capabilities
+                        {
+                            0xFF, 
+                            Zero, 
+                            Zero, 
+                            Zero
+                        })
+                    }
+
+                    Device (HS04)
+                    {
+                        Name (_ADR, 0x04)  // _ADR: Address
+                        Name (_UPC, Package (0x04)  // _UPC: USB Port Capabilities
+                        {
+                            0xFF, 
+                            Zero, 
+                            Zero, 
+                            Zero
+                        })
+                    }
+
+                    Device (HS05)
+                    {
+                        Name (_ADR, 0x05)  // _ADR: Address
+                        Name (_UPC, Package (0x04)  // _UPC: USB Port Capabilities
+                        {
+                            0xFF, 
+                            0xFF, 
+                            Zero, 
+                            Zero
+                        })
+                    }
+
+                    Device (HS06)
+                    {
+                        Name (_ADR, 0x06)  // _ADR: Address
+                        Name (_UPC, Package (0x04)  // _UPC: USB Port Capabilities
+                        {
+                            0xFF, 
+                            0xFF, 
+                            Zero, 
+                            Zero
+                        })
+                    }
+
+                    Device (HS08)
+                    {
+                        Name (_ADR, 0x08)  // _ADR: Address
+                        Name (_UPC, Package (0x04)  // _UPC: USB Port Capabilities
+                        {
+                            0xFF, 
+                            0xFF, 
+                            Zero, 
+                            Zero
+                        })
+                    }
+
+                    Device (SS01)
+                    {
+                        Name (_ADR, 0x0D)  // _ADR: Address
+                        Name (_UPC, Package (0x04)  // _UPC: USB Port Capabilities
+                        {
+                            0xFF, 
+                            0x03, 
+                            Zero, 
+                            Zero
+                        })
+                    }
+
+                    Device (SS03)
+                    {
+                        Name (_ADR, 0x0F)  // _ADR: Address
+                        Name (_UPC, Package (0x04)  // _UPC: USB Port Capabilities
+                        {
+                            0xFF, 
+                            0x0A, 
+                            Zero, 
+                            Zero
+                        })
+                    }
+
+                    Device (SS04)
+                    {
+                        Name (_ADR, 0x10)  // _ADR: Address
+                        Name (_UPC, Package (0x04)  // _UPC: USB Port Capabilities
+                        {
+                            0xFF, 
+                            0x0A, 
+                            Zero, 
+                            Zero
+                        })
+                    }
                 }
             }
         }
@@ -406,11 +590,20 @@ DefinitionBlock ("", "SSDT", 2, "HAMCUK", "Hack", 0)
                     
                     Return (Package () {
                         "name",
-                        "GIGE",
+                        Buffer ()
+                        {
+                            "GIGE"
+                        },
                         "AAPL,slot-name",
-                        "Built-in",
+                        Buffer ()
+                        {
+                            "Built-in"
+                        },
                         "device_type",
-                        "Ethernet Controller"
+                        Buffer ()
+                        {
+                            "Ethernet Controller"
+                        }
                     })
                 }
             }
@@ -446,13 +639,25 @@ DefinitionBlock ("", "SSDT", 2, "HAMCUK", "Hack", 0)
                     
                     Return (Package () {
                         "name",
-                        "ARPT",
+                        Buffer ()
+                        {
+                            "ARPT"
+                        },
                         "AAPL,slot-name",
-                        "Built-in",
+                        Buffer ()
+                        {
+                            "Built-in"
+                        },
                         "device_type",
-                        "Aiport Extreme",
+                        Buffer ()
+                        {
+                            "Aiport Extreme"
+                        },
                         "model",
-                        "Hamcuks Intel Wi-Fi 6 AX200"
+                        Buffer ()
+                        {
+                            "Hamcuks Intel Wi-Fi 6 AX200"
+                        }
                     })
                 }
             }
