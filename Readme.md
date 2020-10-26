@@ -50,10 +50,11 @@ Please disable this configurations in BIOS. You can enable again after installat
 - QE/CI Intel UHD Graphis 620
 - Power Management
 - Shutdown, Restart, Sleep (ongoing test), Wake
-- Audio speaker, Int mic., Headphone (Layoit-id 66)
+- Audio speaker, Int mic., Headphone (Layoot-id 66)
 - Wi-Fi with AirportItlwm.kext and Blueetooth
 - Trackpad Multi Gesture, running on Interrupt mode (0x55 Pin List)
 - Camera
+- HDMI Out, HDMI Audio
 - etc
 
 ## Not working and not tested
@@ -81,6 +82,7 @@ Please disable this configurations in BIOS. You can enable again after installat
 - [H4CK1NTOSH L0V3R](https://t.me/HackintoshLover) Group
 - [Dortania](https://dortania.github.io) as their pretty nice guide
 - [Zenbook Hackintosh by Hieplpvip](https://github.com/hieplpvip/Asus-Zenbook-Hackintosh)
+- [Muhamad Ikhsan](https://github.com/exxncss)
 
 ## Terima Kasih, Matur Nuwun, Kamboto Terimakasih, Hatur Nuhun
 
