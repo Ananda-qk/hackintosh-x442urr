@@ -50,7 +50,7 @@ Please disable this configurations in BIOS. You can enable again after installat
 - QE/CI Intel UHD Graphis 620
 - Power Management
 - Shutdown, Restart, Sleep (ongoing test), Wake
-- Audio speaker, Int mic., Headphone (Layoot-id 66)
+- Audio speaker, Int mic., Headphone (Layout-id 66)
 - Wi-Fi with AirportItlwm.kext and Blueetooth
 - Trackpad Multi Gesture, running on Interrupt mode (0x55 Pin List)
 - Camera
