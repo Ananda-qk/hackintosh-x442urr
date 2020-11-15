@@ -1,13 +1,13 @@
 # ASUS X442UR/R Hackintosh
 This is EFI Patch based on OpenCore bootloader that I've made. It's just for series X442UR, X442URR, A442UR, or A442URR, if you're facing a problem using this EFI, you can open issue in this repo or contact me on [Telegram](https://t.me/hamcuks)
 
-![About This Mac](https://github.com/hamcuks/hackintosh-x442urr/blob/master/Screnshots/ss-about.png?raw=true)
-![Opencore Bootloader](https://github.com/hamcuks/hackintosh-x442urr/blob/master/Screnshots/ss-bl.png?raw=true)
-![Intel UHD 620 Graphics](https://github.com/hamcuks/hackintosh-x442urr/blob/master/Screnshots/ss-gpu.png?raw=true)
-![Credit patch](https://github.com/hamcuks/hackintosh-x442urr/blob/master/Screnshots/ss-pci.png?raw=true)
-![Peripheral](https://github.com/hamcuks/hackintosh-x442urr/blob/master/Screnshots/ss-peripheral.png?raw=true)
-![SATA](https://github.com/hamcuks/hackintosh-x442urr/blob/master/Screnshots/ss-sata.png?raw=true)
-![WiFi Intel 6 AX200](https://github.com/hamcuks/hackintosh-x442urr/blob/master/Screnshots/ss-wifi.png?raw=true)
+![About This Mac](Screnshots/ss-about.png)
+![Opencore Bootloader](Screnshots/ss-bl.png)
+![Intel UHD 620 Graphics](Screnshots/ss-gpu.png)
+![Credit patch](Screnshots/ss-pci.png)
+![Peripheral](Screnshots/ss-peripheral.png)
+![SATA](Screnshots/ss-sata.png)
+![WiFi Intel 6 AX200](Screnshots/ss-wifi.png)
 
 
 ## Technical Specs
@@ -20,14 +20,14 @@ iGPU        | Intel UHD 620 Graphics
 dGPU        | Nvidia 930MX
 Storage     | ADATA 120GB SSD SATA III
 RAM         | 2 x 4GB
-WLAN        | Intel Wi-Fi 6 AX200
+WLAN        | Qualcomm QCA9377
 Ethernet    | RTL8111/8168H
 Trackpad    | Elan 1200 I2C
 Audio | Realtek ALC256 Audio Codec
-Bios Version | X442URR.308
+BIOS Version | X442URR.308
  
 ## Bootloader
-Bootloader        | Verson
+Bootloader        | Version
 ------------| ----------
 OpenCore | 0.6.2
 Clover | Ongoing
@@ -36,30 +36,36 @@ Clover | Ongoing
 Please disable this configurations in BIOS. You can enable again after installation
 - Vt-D
 - Vt-X
+- Disable Fastboot
 - CSM 
 - Secure Boot
 - set DVMT-Prealloc to 64MB
 
 ## Supported macOS
-- Big Sur 11.0 Beta 10 => Tested, OC 0.6.2
-- Catalina => Not tested yet, ongoing
-- Mojave => Not tested yet, ongoing
+| macOS | Version | OC | Clover
+--------| --------| ---- | ------
+Big Sur | 11.0.1 (20B29) | YES | Ongoing
+Big Sur | Beta 10 | YES | Ongoing
+Catalina | 10.15.7 | YES | Ongoing
+Mojave | 10.14.6 (18G95) | YES | Ongoing
+High Sierra | 10.13.6 | YES | Ongoing
 
 ## Whats working?
-- Multiboot, this patch suitable for multibooting. Tested on multiboot with Windows 10
+- Multiboot, this patch suitable for multibooting. Tested multiboot with Windows 10
 - QE/CI Intel UHD Graphis 620
 - Power Management
-- Shutdown, Restart, Sleep (ongoing test), Wake
+- Shutdown, Restart, Sleep, Wake
 - Audio speaker, Int mic., Headphone (Layout-id 66)
-- Wi-Fi with AirportItlwm.kext and Blueetooth
+- Wi-Fi (replaced by Intel Wi-Fi 6 AX200)
+- Bluetooth
 - Trackpad Multi Gesture, running on Interrupt mode (0x55 Pin List)
 - Camera
 - HDMI Out, HDMI Audio
+- VGA Port
+- Ethernet
 - etc
 
-## Not working and not tested
-- Ethernet, detected on DPCIManager but not tested yet
-- VGA, not tested yet
+## Not working
 - Nvidia 930MX (disabled)
 - Card reader
 - iMessage, facetime. Not really important right now
@@ -67,16 +73,12 @@ Please disable this configurations in BIOS. You can enable again after installat
 
 ## Known Issues
 - When in sleep, sometimes wake up itself. Wake reason: RTC (Alarm)
-- No internet connection after wake from sleep. This is issue when using Airportitlwm.kext, you can go to syspref > network > turn off and turn on again, then reconnect your Wi-Fi or you can reboot your machine. Or you can using itlwm.kext + heliport.app instead of AiportItlwm.kext
 
 ## Config.plist Configuration
-1. This EFI not include with SMBIOS, so you have set it to MacbookPro14,1 SMBIOS
-2. Download as Zip or you can clone this repo using git
-3. Download genSMBIOS [here](https://github.com/corpnewt/GenSMBIOS)
-4. Double click `GenSMBIOS.command` that in GenSMBIOS folder
-5. Enter 2 to select config.plist, then drag and drop the config.plist that in EFI Folder and then press enter key
-6. Enter 3 to generate SMBIOS, type MacbookPro14,1 and then press enter key
-7. Done
+Before use this EFI, make sure you have set the SMBIOS to MacbookPro14,1 . You can generate SMBIOS using genSMBIOS, Clover Configurator (Clover only) or Opencore Configurator (OC Only)
+
+## Bugs Report
+If you're facing problem when using this EFI, you can open issue in this GitHub or direct contact on [Telegram](https://t.me/hamcuks)
 
 ## Credits
 - [H4CK1NTOSH L0V3R](https://t.me/HackintoshLover) Group
@@ -84,5 +86,4 @@ Please disable this configurations in BIOS. You can enable again after installat
 - [Zenbook Hackintosh by Hieplpvip](https://github.com/hieplpvip/Asus-Zenbook-Hackintosh)
 - [Muhamad Ikhsan](https://github.com/exxncss)
 
-## Terima Kasih, Matur Nuwun, Kamboto Terimakasih, Hatur Nuhun
-
+## Terima Kasih, Matur Nuwun, Kamboto Trimakasih, Hatur Nuhun, Thank You
