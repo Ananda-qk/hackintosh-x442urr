@@ -81,9 +81,10 @@ Before use this EFI, make sure you have set the SMBIOS to MacbookPro14,1 . You c
 If you're facing problem when using this EFI, you can open issue in this GitHub or direct contact on [Telegram](https://t.me/hamcuks)
 
 ## Credits
-- [H4CK1NTOSH L0V3R](https://t.me/HackintoshLover) Group
+- H4CK1NTOSH Indonesia
 - [Dortania](https://dortania.github.io) as their pretty nice guide
 - [Zenbook Hackintosh by Hieplpvip](https://github.com/hieplpvip/Asus-Zenbook-Hackintosh)
+- [Andres ZeroCross](https://github.com/andreszerocross) for patch reference
 - [Muhamad Ikhsan](https://github.com/exxncss)
 
 ## Terima Kasih, Matur Nuwun, Kamboto Trimakasih, Hatur Nuhun, Thank You
