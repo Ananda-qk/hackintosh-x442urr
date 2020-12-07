@@ -677,64 +677,6 @@ DefinitionBlock ("", "SSDT", 2, "HAMCUK", "Hack", 0)
             }
         }
         
-        // import RP05 object
-        External (RP05, DeviceObj)
-        Scope (RP05)
-        {
-            // import PXSX and turn it off
-            External (PXSX, DeviceObj)
-            Scope (PXSX)
-            {
-                If (OSDW)
-                {
-                    Name (_STA, Zero)
-                }
-            }
-            
-            // import GLAN and turn it off
-            External (GLAN, DeviceObj)
-            Scope (GLAN)
-            {
-                If (OSDW)
-                {
-                    Name (_STA, Zero)
-                }
-            }
-            
-            Device (GIGE)
-            {
-                Name (_ADR, Zero)
-                If (!OSDW)
-                {
-                    Name (_STA, Zero)
-                }
-                
-            }
-        }
-        
-        // import RP06 object
-        External (RP06, DeviceObj)
-        Scope (RP06)
-        {
-            // import PXSX and turn it off
-            External (PXSX, DeviceObj)
-            Scope (PXSX)
-            {
-                If (OSDW)
-                {
-                    Name (_STA, Zero)
-                }
-            }
-            
-            Device (ARPT)
-            {
-                Name (_ADR, Zero)
-                If (!OSDW)
-                {
-                    Name (_STA, Zero)
-                }
-            }
-        }
     }
     // END MISC PATCH
 }
