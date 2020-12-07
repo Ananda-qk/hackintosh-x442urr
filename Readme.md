@@ -26,10 +26,10 @@ Trackpad    | Elan 1200 I2C
 Audio | Realtek ALC256 Audio Codec
 BIOS Version | X442URR.308
  
-## Bootloader
+## Curent Bootloader
 Bootloader        | Version
 ------------| ----------
-OpenCore | 0.6.2
+OpenCore | 0.6.4
 Clover | Ongoing
 
 ## BIOS Configuration
@@ -44,6 +44,7 @@ Please disable this configurations in BIOS. You can enable again after installat
 ## Supported macOS
 | macOS | Version | OC | Clover
 --------| --------| ---- | ------
+Big Sur | 11.0.1 (20B50) | YES | Ongoing
 Big Sur | 11.0.1 (20B29) | YES | Ongoing
 Big Sur | Beta 10 | YES | Ongoing
 Catalina | 10.15.7 | YES | Ongoing
@@ -75,13 +76,13 @@ High Sierra | 10.13.6 | YES | Ongoing
 - When in sleep, sometimes wake up itself. Wake reason: RTC (Alarm)
 
 ## Config.plist Configuration
-Before use this EFI, make sure you have set the SMBIOS to MacbookPro14,1 . You can generate SMBIOS using genSMBIOS, Clover Configurator (Clover only) or Opencore Configurator (OC Only)
+Before use this EFI, make sure you have set the SMBIOS to MacbookPro14,1 . You can generate SMBIOS using genSMBIOS
 
 ## Bugs Report
 If you're facing problem when using this EFI, you can open issue in this GitHub or direct contact on [Telegram](https://t.me/hamcuks)
 
 ## Credits
-- H4CK1NTOSH Indonesia
+- Hackintosh Indonesia
 - [Dortania](https://dortania.github.io) as their pretty nice guide
 - [Zenbook Hackintosh by Hieplpvip](https://github.com/hieplpvip/Asus-Zenbook-Hackintosh)
 - [Andres ZeroCross](https://github.com/andreszerocross) for patch reference
